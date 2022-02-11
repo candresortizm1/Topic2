@@ -43,7 +43,7 @@ public class PrinterController {
      * In: a request param with the id of the printer and the body request with the fields:
      *      - 'document' (string) it is the document to be printed
      *      - 'typePrint' (string) with values 'black' or 'color'
-     * Out: the Message of success or fail with their respective http response code
+     * Out: The Message of success or fail with their respective http response code
      * */
     @PostMapping
     @RequestMapping("/{printerId}/printDocument")
