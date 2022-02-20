@@ -1,11 +1,16 @@
 package com.glb.javaacademy.Topic2.dao;
+
 import com.glb.javaacademy.Topic2.model.Printer;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class PrinterConcrete implements PrinterDao{
+@Primary
+public class BlackWhitePrinter implements PrinterDao{
 
     private static List<Printer> DB = new ArrayList<>();
 
@@ -21,14 +26,11 @@ public class PrinterConcrete implements PrinterDao{
 
     @Override
     public String printDocument(Printer printer, String document, String printType) {
-        return "The document: "+document+" was printed on "+printer.getId()+" in "+printType;
+        return "The document: "+document+" was printed on "+printer.getId()+" in black";
     }
 
     @Override
-    public List<Printer> getPrinters(String typePrinter) {
-        if(!typePrinter.equals("all")){
-            return filterPrinters(typePrinter);
-        }
+    public List<Printer> getPrinters() {
         return DB;
     }
 
@@ -41,19 +43,14 @@ public class PrinterConcrete implements PrinterDao{
         }
         return null;
     }
-
     private List<Printer> filterPrinters(String typePrinter){
         List<Printer> filteredPrinters = new ArrayList<Printer>();
         for(Printer printer: DB){
             if(typePrinter.equals("black") && printer.getColor()==false &&
                     printer.getBlackWhite()==true){
                 filteredPrinters.add(printer);
-            }else if(typePrinter.equals("color") && printer.getColor()==true &&
-                    printer.getBlackWhite()==false){
-                filteredPrinters.add(printer);
             }
         }
         return filteredPrinters;
     }
-
 }

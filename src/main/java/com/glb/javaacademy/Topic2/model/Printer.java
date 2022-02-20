@@ -5,6 +5,7 @@ public class Printer {
     private String name;
     private boolean blackWhite;
     private boolean color;
+    private String typePrinter;
 
     public Printer(int id, String name, boolean color,boolean blackWhite) {
         this.id = id;

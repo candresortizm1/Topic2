@@ -13,12 +13,8 @@ import java.util.Map;
 @RequestMapping("/api/v1/printers")
 public class PrinterController {
 
-    private PrinterService printerService;
-
     @Autowired
-    public PrinterController(PrinterService printerService) {
-        this.printerService = printerService;
-    }
+    private PrinterService printerService;
 
     /* Purpose: Method to add a new printer:
     * In: A JSON with params name(String), blackWhite(boolean) and color(boolean)
@@ -35,8 +31,8 @@ public class PrinterController {
      * Out: the list of printers
      * */
     @GetMapping
-    public List<Printer> getPrinters(@RequestParam(name="typePrinter",required = false) String typePrinter){
-        return printerService.getPrinters(typePrinter);
+    public List<Printer> getPrinters(){
+        return printerService.getPrinters();
     }
 
     /* Purpose: Print a document:
